@@ -1,7 +1,9 @@
-function App() {
+import Calculator from "./Components/Calculator";
+
+const App = () => {
   return (
-    <div className="App">
-     
+    <div className="App flex h-screen">
+      <Calculator />
     </div>
   );
 }
