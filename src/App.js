@@ -1,9 +1,12 @@
 import Calculator from "./Components/Calculator";
+import { OutputBoxProvider } from "./Components/OutputBoxContext";
 
 const App = () => {
   return (
     <div className="App flex h-screen">
-      <Calculator />
+      <OutputBoxProvider>
+        <Calculator />
+      </OutputBoxProvider>
     </div>
   );
 }
