@@ -8,7 +8,8 @@ const InputArea = () => {
   const buttons = [7, 8, 9, 4, 5, 6, 1, 2, 3, 0];
   const operators = ["+", "-", "*", "/"];
 
-  const { setBox, setOperator } = useContext(OutputBoxContext);
+  const { box, setBox, operator, setOperator, atHandValue, setAtHandValue } =
+    useContext(OutputBoxContext);
 
   const handleButton = (e) => {
     setBox((prev) => Number(prev + e.target.value));
@@ -16,9 +17,33 @@ const InputArea = () => {
 
   const handleOperator = (e) => {
     setOperator(e.target.value);
+    setAtHandValue(box);
+    setBox("");
   };
 
-  const handleEqual = (e) => {};
+  const handleEqual = (e) => {
+    let result;
+    switch (operator) {
+      case "+":
+        result = Number(atHandValue) + Number(box);
+        setBox(result);
+        break;
+      case "-":
+        result = Number(atHandValue) - Number(box);
+        setBox(result);
+        break;
+      case "*":
+        result = Number(atHandValue) * Number(box);
+        setBox(result);
+        break;
+      case "/":
+        result = Number(atHandValue) / Number(box);
+        setBox(result);
+        break;
+      default:
+        console.log("no operation");
+    }
+  };
 
   const buttonElements = buttons.map((button) => {
     return <Button handler={handleButton} key={nanoid()} value={button} />;
